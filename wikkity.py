@@ -210,14 +210,13 @@ while 1:
                 woot.send ("PRIVMSG ' + channel + ' :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
 
 # Command to gracefully close Wikkity and disconnect it from the
-# Server. Disabled until a safehandle is put in.
-"""
+# Server. Only OPs can use this command due to opCheck
     if data.find ( '!debug.timetogo') != -1:
         thenull = ""
-        woot.send ("QUIT death to us all %s\r\n" % thenull )
-        woot.close()
-        sys.exit()
-"""
+        if (opCheck() == 0):
+            woot.send ("QUIT death to us all %s\r\n" % thenull )
+            woot.close()
+            sys.exit()
 
 # !version: Displays Wikkity Version
     if data.find ( '!version' ) != -1:
