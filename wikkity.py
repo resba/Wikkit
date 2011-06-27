@@ -41,7 +41,7 @@ while 1:
         if(time.time() - lastUsed) > 10:
             global lastUsed
             lastUsed = time.time()
-#            woot.send ("PRIVMSG '+channel+' :lastUsed Check Passed, now returning to command %s\r\n" % globalnullvalue)
+#            woot.send ("PRIVMSG "+channel+" :lastUsed Check Passed, now returning to command %s\r\n" % globalnullvalue)
             return 0
         else:
 #            woot.send ( 'PRIVMSG '+channel+' :Command Cooldown Active. Ignoring Command \r\n' )
@@ -85,11 +85,11 @@ while 1:
             timestamp = e.updated
             summary = e.summary
             woot.send ( 'PRIVMSG '+channel+' :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' :Most Recent Change: %s\r\n" % title)
-            woot.send ("PRIVMSG '+channel+' :Author: %s\r\n" % author)
-            woot.send ("PRIVMSG '+channel+' :Summary: %s\r\n" % summary)
-            woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % threadurl)
-            woot.send ("PRIVMSG '+channel+' :Timestamp: %s\r\n" % timestamp)
+            woot.send ("PRIVMSG "+channel+" :Most Recent Change: %s\r\n" % title)
+            woot.send ("PRIVMSG "+channel+" :Author: %s\r\n" % author)
+            woot.send ("PRIVMSG "+channel+" :Summary: %s\r\n" % summary)
+            woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % threadurl)
+            woot.send ("PRIVMSG "+channel+" :Timestamp: %s\r\n" % timestamp)
         else:
             if (commandCooldown() == 0):
                 feedurl = feedparser.parse("http://wiki.bukkit.org/index.php?title=Special:RecentChanges&feed=atom")
@@ -101,11 +101,11 @@ while 1:
                 timestamp = e.updated
                 summary = e.summary
                 woot.send ( 'PRIVMSG '+channel+' :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' :Most Recent Change: %s\r\n" % title)
-                woot.send ("PRIVMSG '+channel+' :Author: %s\r\n" % author)
-                woot.send ("PRIVMSG '+channel+' :Summary: %s\r\n" % summary)
-                woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % threadurl)
-                woot.send ("PRIVMSG '+channel+' :Timestamp: %s\r\n" % timestamp)
+                woot.send ("PRIVMSG "+channel+" :Most Recent Change: %s\r\n" % title)
+                woot.send ("PRIVMSG "+channel+" :Author: %s\r\n" % author)
+                woot.send ("PRIVMSG "+channel+" :Summary: %s\r\n" % summary)
+                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % threadurl)
+                woot.send ("PRIVMSG "+channel+" :Timestamp: %s\r\n" % timestamp)
 
 # !build: Checks the most recent RECCOMENDED build of Craftbukkit from ci.bukkit.org
     if data.find ( '!build' ) != -1:
@@ -115,8 +115,8 @@ while 1:
             d = feedurlsophos.entries[0]
             sophosurl = d.link
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Recommended Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' : %s\r\n" % newestsophos)
-            woot.send ("PRIVMSG '+channel+' :Download URL: %s\r\n" % sophosurl)
+            woot.send ("PRIVMSG "+channel+" : %s\r\n" % newestsophos)
+            woot.send ("PRIVMSG "+channel+" :Download URL: %s\r\n" % sophosurl)
         else:
             if (commandCooldown() == 0):
                 feedurlsophos = feedparser.parse("http://ci.bukkit.org/other/latest_recommended.rss")
@@ -124,8 +124,8 @@ while 1:
                 d = feedurlsophos.entries[0]
                 sophosurl = d.link
                 woot.send ( 'PRIVMSG '+channel+' :-- Latest Recommended Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' : %s\r\n" % newestsophos)
-                woot.send ("PRIVMSG '+channel+' :Download URL: %s\r\n" % sophosurl)
+                woot.send ("PRIVMSG "+channel+" : %s\r\n" % newestsophos)
+                woot.send ("PRIVMSG "+channel+" :Download URL: %s\r\n" % sophosurl)
 
 # !latest: Checks the most latest build of Craftbukkit  from ci.bukkit.org
     if data.find ( '!latest' ) != -1:
@@ -135,8 +135,8 @@ while 1:
             d = feedurlsophos.entries[0]
             sophosurl = d.link
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' :Latest Build: %s\r\n" % newestsophos)
-            woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % sophosurl)
+            woot.send ("PRIVMSG "+channel+" :Latest Build: %s\r\n" % newestsophos)
+            woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % sophosurl)
         else:
             if (commandCooldown() == 0):
                 feedurlsophos = feedparser.parse("http://ci.bukkit.org/job/dev-CraftBukkit/rssAll")
@@ -144,8 +144,8 @@ while 1:
                 d = feedurlsophos.entries[0]
                 sophosurl = d.link
                 woot.send ( 'PRIVMSG '+channel+' :-- Latest Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' :Latest Build: %s\r\n" % newestsophos)
-                woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % sophosurl)
+                woot.send ("PRIVMSG "+channel+" :Latest Build: %s\r\n" % newestsophos)
+                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % sophosurl)
 
 # !news: displays most recent news from a topic at forums.bukkit.org
     if data.find ( '!news' ) != -1:
@@ -154,16 +154,16 @@ while 1:
             newestex = feedurlex['items'][0].title
             newestlink = feedurlex['items'][0].link
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Bukkit News [ http://www.bukkit.org ] -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' :Latest News: %s\r\n" % newestex)
-            woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % newestlink)
+            woot.send ("PRIVMSG "+channel+" :Latest News: %s\r\n" % newestex)
+            woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
         else:
             if (commandCooldown() == 0):
                 feedurlex = feedparser.parse("http://forums.bukkit.org/forums/bukkit-news.2/index.rss")
                 newestex = feedurlex['items'][0].title
                 newestlink = feedurlex['items'][0].link
                 woot.send ( 'PRIVMSG '+channel+' :-- Latest Bukkit News [ http://www.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' :Latest News: %s\r\n" % newestex)
-                woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % newestlink)
+                woot.send ("PRIVMSG "+channel+" :Latest News: %s\r\n" % newestex)
+                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
 
 # !notch: Displays the most recent blog post from notch.tumblr.com
     if data.find ( '!notch' ) != -1:
@@ -172,42 +172,42 @@ while 1:
             newestex = feedurlex['items'][0].title
             newestlink = feedurlex['items'][0].link
             woot.send ( 'PRIVMSG '+channel+' :-- Most Recent Minecraft News from Notch [ http://notch.tumblr.com ] -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' :Last Blog Post: %s\r\n" % newestex)
-            woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % newestlink)
+            woot.send ("PRIVMSG "+channel+" :Last Blog Post: %s\r\n" % newestex)
+            woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
         else:
             if (commandCooldown() == 0):
                 feedurlex = feedparser.parse("http://notch.tumblr.com/rss")
                 newestex = feedurlex['items'][0].title
                 newestlink = feedurlex['items'][0].link
                 woot.send ( 'PRIVMSG '+channel+' :-- Most Recent Minecraft News from Notch [ http://notch.tumblr.com ] -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' :Last Blog Post: %s\r\n" % newestex)
-                woot.send ("PRIVMSG '+channel+' :URL: %s\r\n" % newestlink)
+                woot.send ("PRIVMSG "+channel+" :Last Blog Post: %s\r\n" % newestex)
+                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
 
 # !help: Displays the help menu that explains all commands.
     if data.find ( '!help' ) != -1:
         if (opCheck() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Help -- \r\n' )
-            woot.send ("PRIVMSG '+channel+' :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!rules: Displays Link to Rules %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
-            woot.send ("PRIVMSG '+channel+' :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!rules: Displays Link to Rules %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+channel+" :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
         else:
             if (commandCooldown() == 0):
                 thenull = ""
                 woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Help -- \r\n' )
-                woot.send ("PRIVMSG '+channel+' :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!rules: Displays Link to Rules %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
-                woot.send ("PRIVMSG '+channel+' :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!rules: Displays Link to Rules %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
+                woot.send ("PRIVMSG "+channel+" :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
 
 # Command to gracefully close Wikkity and disconnect it from the
 # Server. Only OPs can use this command due to opCheck
@@ -494,7 +494,7 @@ while 1:
         woot.send ( 'PRIVMSG '+channel+' :MODE Command Was Sent. \r\n' )
         woot.send ( 'NAMES '+channel+' \r\n' )
     if data.find ( '!debug:lastUsed') != -1:
-        woot.send ("PRIVMSG '+channel+' :%s\r\n" % lastUsed )
+        woot.send ("PRIVMSG "+channel+" :%s\r\n" % lastUsed )
     if data.find ( '!debug:time.time' ) != -1:
-        woot.send ("PRIVMSG '+channel+' :%s\r\n" % time.time() )
+        woot.send ("PRIVMSG "+channel+" :%s\r\n" % time.time() )
 """
