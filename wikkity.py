@@ -228,20 +228,20 @@ while 1:
         if (opCheck() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1 \r\n' )
+            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1_01 \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+channel+' :Last Updated: 5/31/11 at 14:11 ET \r\n' )
+            woot.send ( 'PRIVMSG '+channel+' :Last Updated: 6/27/11 at 16:10 ET \r\n' )
         else:            
             if (commandCooldown() == 0):
                 thenull = ""
                 woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1 \r\n' )
+                woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1_01 \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :Last Updated: 5/31/11 at 13:11 ET \r\n' )
+                woot.send ( 'PRIVMSG '+channel+' :Last Updated: 6/27/11 at 16:10 ET \r\n' )
 
 # !rules: Displays rules linkout.
     if data.find ( '!rules' ) != -1:
@@ -428,11 +428,11 @@ while 1:
         readUser()
         thenull = ""
         woot.send ( 'PRIVMSG '+readUserName+' :-- Wikkity Version -- \r\n' )
-        woot.send ( 'PRIVMSG '+readUserName+' :WikkityBot V0.6.1 \r\n' )
+        woot.send ( 'PRIVMSG '+readUserName+' :WikkityBot V0.6.1_01 \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :Built By resba \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :http://wiki.bukkit.org/Wikkity \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-        woot.send ( 'PRIVMSG '+readUserName+' :Last Updated: 5/31/11 at 14:11 EST \r\n' )
+        woot.send ( 'PRIVMSG '+readUserName+' :Last Updated: 6/27/11 at 16:10 EST \r\n' )
     if data.find ( '^rules' ) != -1:
         readUser()
         thenull = ""
