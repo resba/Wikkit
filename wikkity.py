@@ -8,7 +8,7 @@
 # Requirements: Feedparser Python Library [http://www.feedparser.org/]
 
 import socket, sys, string, time, feedparser
-port = 6697
+port = 6667
 nick = "Wikkity"
 host = 'irc.esper.net'
 name =  "Nothing Short of a Miracle"
