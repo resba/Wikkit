@@ -20,7 +20,7 @@ nick = "Wikkity"
 host = 'irc.esper.net'
 name =  "Nothing Short of a Miracle"
 channel = '#bukkitwiki'
-ident = 'ohmygodmunchkins'
+ident = 'changemetoanything'
 
 # Now we just initialize socket.socket and connect to the server, giving out
 # the bot's info to the server.
