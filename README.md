@@ -1,0 +1,1 @@
+Wikkity is an IRC bot for the #bukkitwiki channel. From the commands it has programmed in, it reads the RSS Feeds from selected websites and pushes them back out to the IRC channel for the viewer to read.
