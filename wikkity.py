@@ -444,9 +444,9 @@ while 1:
 """
     if data.find ( '!debug:reloader' ) != -1:
         woot.send ( 'NAMES ' + channel + ' \r\n' )
-    if data.find ( 'MODE #bukkitwiki' ) != -1:
+    if data.find ( 'MODE' ) != -1:
         woot.send ( 'PRIVMSG ' + channel + ' :MODE Command Was Sent. \r\n' )
-        woot.send ( 'NAMES #bukkitwiki \r\n' )
+        woot.send ( 'NAMES ' + channel + ' \r\n' )
     if data.find ( '!debug:lastUsed') != -1:
         woot.send ("PRIVMSG ' + channel + ' :%s\r\n" % lastUsed )
     if data.find ( '!debug:time.time' ) != -1:
