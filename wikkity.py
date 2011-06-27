@@ -48,8 +48,8 @@ while 1:
             return 1
 #        woot.send ( 'PRIVMSG '+channel+' :lastUsed Check Completed \r\n' )
 
-# Checks for operator status. If person has Op, then the person completely bypasses
-# the CommandCooldown function.
+# Checks for operator status. If person has Op OR Voice, then the person
+# completely bypasses the CommandCooldown function.
     def opCheck():
         lastmessage = data
         mySubString = lastmessage[lastmessage.find(":")+1:lastmessage.find("!")]
@@ -59,6 +59,8 @@ while 1:
         if nameslist.find(atsymbol+mySubString) != -1:
 #            woot.send ( 'PRIVMSG '+channel+' :You are an op \r\n' )
             return 0
+# Note: If you don't want people with Voice to have Bypass privilages
+# Then comment out the next two lines.
         elif nameslist.find(voicesymbol+mySubString) != -1:
             return 0
         else:
@@ -226,7 +228,7 @@ while 1:
         if (opCheck() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.5_01 \r\n' )
+            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1 \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
@@ -235,7 +237,7 @@ while 1:
             if (commandCooldown() == 0):
                 thenull = ""
                 woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.5_01 \r\n' )
+                woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1 \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
                 woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
@@ -426,7 +428,7 @@ while 1:
         readUser()
         thenull = ""
         woot.send ( 'PRIVMSG '+readUserName+' :-- Wikkity Version -- \r\n' )
-        woot.send ( 'PRIVMSG '+readUserName+' :WikkityBot V0.5_01 \r\n' )
+        woot.send ( 'PRIVMSG '+readUserName+' :WikkityBot V0.6.1 \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :Built By resba \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :http://wiki.bukkit.org/Wikkity \r\n' )
         woot.send ( 'PRIVMSG '+readUserName+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
