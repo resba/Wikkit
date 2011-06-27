@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkity IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by Resba
-# Version: 0.5-1
+# Version: 0.6
 # http://wiki.bukkit.org/IRC/Bots/Wikkity
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
