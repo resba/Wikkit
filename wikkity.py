@@ -55,8 +55,11 @@ while 1:
         mySubString = lastmessage[lastmessage.find(":")+1:lastmessage.find("!")]
 #        woot.send ( 'PRIVMSG '+channel+' :Last Message: %s\r\n'%mySubString )
         atsymbol = "@"
+        voicesymbol = "+"
         if nameslist.find(atsymbol+mySubString) != -1:
 #            woot.send ( 'PRIVMSG '+channel+' :You are an op \r\n' )
+            return 0
+        elif nameslist.find(voicesymbol+mySubString) != -1:
             return 0
         else:
 #            woot.send ( 'PRIVMSG '+channel+' :You are not an op \r\n' )
