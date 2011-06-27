@@ -17,7 +17,7 @@ ident = 'ohmygodmunchkins'
 woot = socket.socket()
 woot.connect ( (host, port) )
 woot.send ( 'NICK ' + nick + '\r\n' )
-woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :WikkityBot\r\n' )
+woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :Wikkity\r\n' )
 lastUsed = time.time()
 while 1:
     data = woot.recv ( 1204 )
@@ -442,10 +442,8 @@ while 1:
         parsedMessage = lastMessage[lastMessage.find("!debug:say")+1:lastMessage.find("~.")]
         woot.send ( 'PRIVMSG #bukkitwiki :%s\r\n' % parsedMessage )
 """
-				if data.find ( '!debug:reloader' ) != -1:
+    if data.find ( '!debug:reloader' ) != -1:
         woot.send ( 'NAMES #bukkitwiki \r\n' )
-        if data.find ( 'resba' ) != -1:
-            woot.send ( 'PRIVMSG #bukkitwiki :Hai Resba! \r\n' )
     if data.find ( 'MODE #bukkitwiki' ) != -1:
         woot.send ( 'PRIVMSG #bukkitwiki :MODE Command Was Sent. \r\n' )
         woot.send ( 'NAMES #bukkitwiki \r\n' )
