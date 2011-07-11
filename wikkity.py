@@ -58,6 +58,7 @@ while 1:
         voicesymbol = "+"
         if nameslist.find(atsymbol+mySubString) != -1:
 #            woot.send ( 'PRIVMSG '+channel+' :You are an op \r\n' )
+            commandCooldown()
             return 0
 # Note: If you don't want people with Voice to have Bypass privilages
 # Then comment out the next two lines.
@@ -95,22 +96,6 @@ while 1:
             woot.send ("PRIVMSG "+channel+" :Summary: %s\r\n" % summary)
             woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % threadurl)
             woot.send ("PRIVMSG "+channel+" :Timestamp: %s\r\n" % timestamp)
-        else:
-            if (commandCooldown() == 0):
-                feedurl = feedparser.parse("http://wiki.bukkit.org/index.php?title=Special:RecentChanges&feed=atom")
-                newest = feedurl['items'][0]
-                e = feedurl.entries[0]
-                threadurl = e.link
-                title = e.title
-                author = e.author
-                timestamp = e.updated
-                summary = e.summary
-                woot.send ( 'PRIVMSG '+channel+' :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" :Most Recent Change: %s\r\n" % title)
-                woot.send ("PRIVMSG "+channel+" :Author: %s\r\n" % author)
-                woot.send ("PRIVMSG "+channel+" :Summary: %s\r\n" % summary)
-                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % threadurl)
-                woot.send ("PRIVMSG "+channel+" :Timestamp: %s\r\n" % timestamp)
 
 # !build: Checks the most recent RECCOMENDED build of Craftbukkit from ci.bukkit.org
     if data.find ( '!build' ) != -1:
@@ -122,15 +107,6 @@ while 1:
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Recommended Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
             woot.send ("PRIVMSG "+channel+" : %s\r\n" % newestsophos)
             woot.send ("PRIVMSG "+channel+" :Download URL: %s\r\n" % sophosurl)
-        else:
-            if (commandCooldown() == 0):
-                feedurlsophos = feedparser.parse("http://ci.bukkit.org/other/latest_recommended.rss")
-                newestsophos = feedurlsophos['items'][0].title
-                d = feedurlsophos.entries[0]
-                sophosurl = d.link
-                woot.send ( 'PRIVMSG '+channel+' :-- Latest Recommended Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" : %s\r\n" % newestsophos)
-                woot.send ("PRIVMSG "+channel+" :Download URL: %s\r\n" % sophosurl)
 
 # !latest: Checks the most latest build of Craftbukkit  from ci.bukkit.org
     if data.find ( '!latest' ) != -1:
@@ -142,15 +118,6 @@ while 1:
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
             woot.send ("PRIVMSG "+channel+" :Latest Build: %s\r\n" % newestsophos)
             woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % sophosurl)
-        else:
-            if (commandCooldown() == 0):
-                feedurlsophos = feedparser.parse("http://ci.bukkit.org/job/dev-CraftBukkit/rssAll")
-                newestsophos = feedurlsophos['items'][0].title
-                d = feedurlsophos.entries[0]
-                sophosurl = d.link
-                woot.send ( 'PRIVMSG '+channel+' :-- Latest Craftbukkit Build [ http://ci.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" :Latest Build: %s\r\n" % newestsophos)
-                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % sophosurl)
 
 # !news: displays most recent news from a topic at forums.bukkit.org
     if data.find ( '!news' ) != -1:
@@ -161,15 +128,6 @@ while 1:
             woot.send ( 'PRIVMSG '+channel+' :-- Latest Bukkit News [ http://www.bukkit.org ] -- \r\n' )
             woot.send ("PRIVMSG "+channel+" :Latest News: %s\r\n" % newestex)
             woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
-        else:
-            if (commandCooldown() == 0):
-                feedurlex = feedparser.parse("http://forums.bukkit.org/forums/bukkit-news.2/index.rss")
-                newestex = feedurlex['items'][0].title
-                newestlink = feedurlex['items'][0].link
-                woot.send ( 'PRIVMSG '+channel+' :-- Latest Bukkit News [ http://www.bukkit.org ] -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" :Latest News: %s\r\n" % newestex)
-                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
-
 # !notch: Displays the most recent blog post from notch.tumblr.com
     if data.find ( '!notch' ) != -1:
         if (opCheck() == 0):
@@ -179,15 +137,6 @@ while 1:
             woot.send ( 'PRIVMSG '+channel+' :-- Most Recent Minecraft News from Notch [ http://notch.tumblr.com ] -- \r\n' )
             woot.send ("PRIVMSG "+channel+" :Last Blog Post: %s\r\n" % newestex)
             woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
-        else:
-            if (commandCooldown() == 0):
-                feedurlex = feedparser.parse("http://notch.tumblr.com/rss")
-                newestex = feedurlex['items'][0].title
-                newestlink = feedurlex['items'][0].link
-                woot.send ( 'PRIVMSG '+channel+' :-- Most Recent Minecraft News from Notch [ http://notch.tumblr.com ] -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" :Last Blog Post: %s\r\n" % newestex)
-                woot.send ("PRIVMSG "+channel+" :URL: %s\r\n" % newestlink)
-
 # !help: Displays the help menu that explains all commands.
     if data.find ( '!help' ) != -1:
         if (opCheck() == 0):
@@ -201,18 +150,6 @@ while 1:
             woot.send ("PRIVMSG "+channel+" :!rules: Displays Link to Rules %s\r\n" % thenull )
             woot.send ("PRIVMSG "+channel+" :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
             woot.send ("PRIVMSG "+channel+" :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
-        else:
-            if (commandCooldown() == 0):
-                thenull = ""
-                woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Help -- \r\n' )
-                woot.send ("PRIVMSG "+channel+" :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!rules: Displays Link to Rules %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
-                woot.send ("PRIVMSG "+channel+" :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
 
 # Command to gracefully close Wikkity and disconnect it from the
 # Server. Only OPs can use this command due to opCheck
@@ -228,32 +165,17 @@ while 1:
         if (opCheck() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1_01 \r\n' )
+            woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.7-development \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+channel+' :Last Updated: 6/27/11 at 16:10 ET \r\n' )
-        else:            
-            if (commandCooldown() == 0):
-                thenull = ""
-                woot.send ( 'PRIVMSG '+channel+' :-- Wikkity Version -- \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :WikkityBot V0.6.1_01 \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :Built By resba \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :http://wiki.bukkit.org/Wikkity \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :Last Updated: 6/27/11 at 16:10 ET \r\n' )
-
+            woot.send ( 'PRIVMSG '+channel+' :Last Updated: 7/10/11 at 23:13 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( '!rules' ) != -1:
         if (opCheck() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+channel+' :IRC Rules can be found on: http://wiki.bukkit.org/IRC \r\n' )
             woot.send ( 'PRIVMSG '+channel+' :To display a rule, type !rule<number> \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                thenull = ""
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rules can be found on: http://wiki.bukkit.org/IRC \r\n' )
-                woot.send ( 'PRIVMSG '+channel+' :To display a rule, type !rule<number> \r\n' )
     if data.find ( 'MODE' ) != -1:
 #        woot.send ( 'PRIVMSG '+channel+' :MODE Command Was Sent. \r\n' )
         woot.send ( 'NAMES ' + channel + ' \r\n' )
@@ -262,99 +184,51 @@ while 1:
     if data.find ( '!rule1' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #1 - ALWAYS READ THE TOPIC - http://wiki.bukkit.org/IRC#rule1 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #1 - ALWAYS READ THE TOPIC - http://wiki.bukkit.org/IRC#rule1 \r\n' )
     if data.find ( '!rule2' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #2 - We are volunteers! - http://wiki.bukkit.org/IRC#rule2 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #2 - We are volunteers! - http://wiki.bukkit.org/IRC#rule2 \r\n' )
     if data.find ( '!rule3' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #3 - This is not designed as a support channel! - http://wiki.bukkit.org/IRC#rule3 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #3 - This is not designed as a support channel! - http://wiki.bukkit.org/IRC#rule3 \r\n' )
     if data.find ( '!rule4' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #4 - Ignorance is not a valid defense. - http://wiki.bukkit.org/IRC#rule4 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #4 - Ignorance is not a valid defense. - http://wiki.bukkit.org/IRC#rule4 \r\n' )
     if data.find ( '!rule5' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #5 - No excessive usage of profanity - http://wiki.bukkit.org/IRC#rule5 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #5 - No excessive usage of profanity - http://wiki.bukkit.org/IRC#rule5 \r\n' )
     if data.find ( '!rule6' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #6 - No racism, discrimination, threats, harassment or personal attacks of any kind are permitted. - http://wiki.bukkit.org/ \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #6 - No racism, discrimination, threats, harassment or personal attacks of any kind are permitted. - http://wiki.bukkit.org/IRC#rule6 \r\n' )
     if data.find ( '!rule7' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #7 - No vulgarity or obscenity. - http://wiki.bukkit.org/IRC#rule7 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #7 - No vulgarity or obscenity. - http://wiki.bukkit.org/IRC#rule7 \r\n' )
     if data.find ( '!rule8' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #8 - No spamming is permitted, whatsoever. - http://wiki.bukkit.org/IRC#rule8 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #8 - No spamming is permitted, whatsoever. - http://wiki.bukkit.org/IRC#rule8 \r\n' )
     if data.find ( '!rule9' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #9 - No flaming, inciting hatred or instigating flame bait is permitted. - http://wiki.bukkit.org/IRC#rule9 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #9 - No flaming, inciting hatred or instigating flame bait is permitted. - http://wiki.bukkit.org/IRC#rule9 \r\n' )
     if data.find ( '!rule10' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #10 - No selling of products or services, unless approved by a member of the channel staff. - http://wiki.bukkit.org/IRC#rule10 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #10 - No selling of products or services, unless approved by a member of the channel staff. - http://wiki.bukkit.org/IRC#rule10 \r\n' )
     if data.find ( '!rule11' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #11 - Do not ask for a position on staff. - http://wiki.bukkit.org/IRC#rule11 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #11 - Do not ask for a position on staff. - http://wiki.bukkit.org/IRC#rule11 \r\n' )
     if data.find ( '!rule12' ) != -1:
         if (opCheck() == 0):
 		            woot.send ( 'PRIVMSG '+channel+' :IRC Rule #12 - No advertising. - http://wiki.bukkit.org/IRC#rule12 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #12 - No advertising. - http://wiki.bukkit.org/IRC#rule12 \r\n' )
     if data.find ( '!rule13' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #13 - Disrespect and intolerance towards other people is NOT acceptable. - http://wiki.bukkit.org/IRC#rule13 \r\n' )
-        else:
-            if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #13 - Disrespect and intolerance towards other people is NOT acceptable. - http://wiki.bukkit.org/IRC#rule13 \r\n' )
     if data.find ( '!rule14' ) != -1:
         if (opCheck() == 0):
             woot.send ( 'PRIVMSG '+channel+' :IRC Rule #14 - BE PATIENT and no excessive repeating - http://wiki.bukkit.org/IRC#rule14 \r\n' )		
-        else:
-	    if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #14 - BE PATIENT and no excessive repeating - http://wiki.bukkit.org/IRC#rule14 \r\n' )
     if data.find ( '!rule15' ) != -1:
         if (opCheck() == 0):
 		    woot.send ( 'PRIVMSG '+channel+' :IRC Rule #15 - Pastebin logs, code snippets, anything longer than 3 lines! - http://wiki.bukkit.org/IRC#rule15 \r\n' )
-        else:
-	    if (commandCooldown() == 0):
-                woot.send ( 'PRIVMSG '+channel+' :IRC Rule #15 - Pastebin logs, code snippets, anything longer than 3 lines! - http://wiki.bukkit.org/IRC#rule15 \r\n' )
     if data.find ( '!rule16' ) != -1:
         if (opCheck() == 0):
 			woot.send ( 'PRIVMSG '+channel+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
-	else:
-	    if (commandCooldown() == 0):
-	        woot.send ( 'PRIVMSG '+channel+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
 
 
 #Private Messages Commands. Same documentation as above.#
