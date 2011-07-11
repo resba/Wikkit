@@ -53,8 +53,8 @@ while 1:
             global readUserName
             readUserName = lastmessage[lastmessage.find(":")+1:lastmessage.find("!")]
             messageable = readUserName
-        else:
-            readUserName = channel
+        elif data.find( '!' ) != -1:
+            readUserName = null
         	
 
 # Checks for operator status. If person has Op OR Voice, then the person
@@ -92,7 +92,7 @@ while 1:
 # Beginning commands below. Parsed with feedparser.
 
 # !wiki: Checks the recent changes RSS feed at wiki.bukkit.org
-    if data.find ( '!wiki' ) != -1:
+    if data.find ( 'wiki' ) != -1:
         if (opCheck() == 0):
             feedurl = feedparser.parse("http://wiki.bukkit.org/index.php?title=Special:RecentChanges&feed=atom")
             newest = feedurl['items'][0]
@@ -110,7 +110,7 @@ while 1:
             woot.send ("PRIVMSG "+messageable+" :Timestamp: %s\r\n" % timestamp)
 
 # !build: Checks the most recent RECCOMENDED build of Craftbukkit from ci.bukkit.org
-    if data.find ( '!build' ) != -1:
+    if data.find ( 'build' ) != -1:
         if (opCheck() == 0):
             feedurlsophos = feedparser.parse("http://ci.bukkit.org/other/latest_recommended.rss")
             newestsophos = feedurlsophos['items'][0].title
