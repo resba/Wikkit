@@ -241,8 +241,9 @@ while 1:
     if data.find ( 'rule16' ) != -1:
         if (opCheck() == 0):
 			woot.send ( 'PRIVMSG '+messageable+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
+    
 
-"""
+            """
 #Private Messages Commands. Same documentation as above.#
     if data.find ( '^wiki' ) != -1:
         readUser()
