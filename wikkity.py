@@ -59,7 +59,7 @@ while 1:
 
 # Feelin' up the channel.
     if data.find ( '376' ) != -1:
-        woot.send( 'JOIN '+messageable+'\r\n' )
+        woot.send( 'JOIN '+channel+'\r\n' )
     if data.find ( '353' ) != -1:
         nameslist = data
 #        woot.send( 'PRIVMSG '+messageable+' :Found new NAMES Listing: %s\r\n' %nameslist )
