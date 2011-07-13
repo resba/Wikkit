@@ -80,13 +80,19 @@ while 1:
         voicesymbol = "+"
         nameslist = data
         if nameslist.find(atsymbol+mySubString) != -1:
-            readUser()
+            if readUser() == 0:
+                return 0
+            if readUser() == 1:
+                return 1            
 #            woot.send ( 'PRIVMSG '+messageable+' :You are an op \r\n' )
             return 0
 # Note: If you don't want people with Voice to have Bypass privilages
 # Then comment out the next two lines.
         elif nameslist.find(voicesymbol+mySubString) != -1:
-            readUser()
+            if readUser() == 0:
+                return 0
+            if readUser() == 1:
+                return 1  
             return 0
         else:
 #            woot.send ( 'PRIVMSG '+messageable+' :You are not an op \r\n' )
