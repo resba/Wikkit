@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkity IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by Resba
-# Version: 0.6.1_01
+# Version: 0.7-development
 # http://wiki.bukkit.org/IRC/Bots/Wikkity
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -28,6 +28,7 @@ woot = socket.socket()
 woot.connect ( (host, port) )
 woot.send ( 'NICK ' + nick + '\r\n' )
 woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :Wikkity\r\n' )
+global lastUsed
 lastUsed = time.time()
 # Beginning the Loop here.
 while 1:
@@ -39,7 +40,6 @@ while 1:
     def commandCooldown():
 #        woot.send ( 'PRIVMSG '+messageable+' :Loaded commandCooldown Function \r\n' )
         if(time.time() - lastUsed) > 10:
-            global lastUsed
             lastUsed = time.time()
 #            woot.send ("PRIVMSG "+messageable+" :lastUsed Check Passed, now returning to command %s\r\n" % globalnullvalue)
             return 0
