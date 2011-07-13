@@ -55,7 +55,7 @@ while 1:
             readUserName = lastmessage[lastmessage.find(":")+1:lastmessage.find("!")]
             messageable = readUserName
         elif data.find( '!' ) != -1:
-            readUserName = null
+            readUserName = globalnullvalue
 
 # Feelin' up the channel.
     if data.find ( '376' ) != -1:
