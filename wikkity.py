@@ -84,7 +84,7 @@ while 1:
             return 0
         elif (commandCooldown()==1):
             return 1
-        elif (commandcCooldown()==0):
+        elif (commandCooldown()==0):
             return 0
 # Beginning commands below. Parsed with feedparser.
 
