@@ -28,7 +28,6 @@ woot = socket.socket()
 woot.connect ( (host, port) )
 woot.send ( 'NICK ' + nick + '\r\n' )
 woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :Wikkity\r\n' )
-global lastUsed
 global nameslist
 lastUsed = time.time()
 # Beginning the Loop here.
@@ -41,6 +40,7 @@ while 1:
     def commandCooldown():
 #        woot.send ( 'PRIVMSG '+messageable+' :Loaded commandCooldown Function \r\n' )
         if(time.time() - lastUsed) > 10:
+            global lastUsed
             lastUsed = time.time()
 #            woot.send ("PRIVMSG "+messageable+" :lastUsed Check Passed, now returning to command %s\r\n" % globalnullvalue)
             return 0
