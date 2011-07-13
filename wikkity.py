@@ -86,9 +86,10 @@ while 1:
         else:
 #            woot.send ( 'PRIVMSG '+messageable+' :You are not an op \r\n' )
             readUser()
-            commandCooldown()
-            return 0
-
+            if commandCooldown() == 0:
+                return 0
+            if commandCooldown() == 1:
+                return 1
 # Beginning commands below. Parsed with feedparser.
 
 # !wiki: Checks the recent changes RSS feed at wiki.bukkit.org
