@@ -82,10 +82,11 @@ while 1:
 # Then comment out the next two lines.
         elif nameslist.find(voicesymbol+mySubString) != -1:
             return 0
-        elif (commandCooldown()==1):
-            return 1
-        elif (commandCooldown()==0):
-            return 0
+        else:
+            if (commandCooldown()==1):
+                return 1
+            elif (commandCooldown()==0):
+                return 0
 # Beginning commands below. Parsed with feedparser.
 
 # !wiki: Checks the recent changes RSS feed at wiki.bukkit.org
