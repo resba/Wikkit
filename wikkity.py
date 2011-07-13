@@ -82,9 +82,9 @@ while 1:
 # Then comment out the next two lines.
         elif nameslist.find(voicesymbol+mySubString) != -1:
             return 0
-        elif commandCooldown()==1:
+        elif (commandCooldown()==1):
             return 1
-        elif commandcCooldown()==0:
+        elif (commandcCooldown()==0):
             return 0
 # Beginning commands below. Parsed with feedparser.
 
