@@ -57,7 +57,7 @@ while 1:
         elif data.find( '!' ) != -1:
             readUserName = globalnullvalue
         else:
-            break
+            return 1
 
 # Feelin' up the channel.
     if data.find ( '376' ) != -1:
@@ -88,10 +88,12 @@ while 1:
             return 0
         else:
 #            woot.send ( 'PRIVMSG '+messageable+' :You are not an op \r\n' )
-            readUser()
-            if commandCooldown() == 0:
-                return 0
-            if commandCooldown() == 1:
+            if readUser() == 0:
+                if commandCooldown() == 0:
+                    return 0
+                if commandCooldown() == 1:
+                    return 1
+            if readUser() == 1:
                 return 1
 # Beginning commands below. Parsed with feedparser.
 
