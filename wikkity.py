@@ -54,8 +54,10 @@ while 1:
             global readUserName
             readUserName = lastmessage[lastmessage.find(":")+1:lastmessage.find("!")]
             messageable = readUserName
+            return 0
         elif data.find( '!' ) != -1:
-            readUserName = globalnullvalue
+            messageable = channel
+            return 0
         else:
             return 1
 
