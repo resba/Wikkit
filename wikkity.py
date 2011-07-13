@@ -100,7 +100,7 @@ while 1:
             author = e.author
             timestamp = e.updated
             summary = e.summary
-            woot.send ( 'PRIVMSG #bukkitwiki :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
+            woot.send ( 'PRIVMSG '+channel+' :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
             woot.send ("PRIVMSG "+channel+" :Most Recent Change: %s\r\n" % title)
             woot.send ("PRIVMSG "+channel+" :Author: %s\r\n" % author)
             woot.send ("PRIVMSG "+channel+" :Summary: %s\r\n" % summary)
