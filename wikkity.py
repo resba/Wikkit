@@ -55,7 +55,15 @@ while 1:
             messageable = readUserName
         elif data.find( '!' ) != -1:
             readUserName = null
-        	
+
+# Feelin' up the channel.
+    if data.find ( '376' ) != -1:
+        woot.send( 'JOIN '+messageable+'\r\n' )
+    if data.find ( '353' ) != -1:
+        nameslist = data
+#        woot.send( 'PRIVMSG '+messageable+' :Found new NAMES Listing: %s\r\n' %nameslist )
+    if data.find ( 'PING' ) != -1:
+        woot.send( 'PONG ' + data.split() [1] + '\r\n')        	
 
 # Checks for operator status. If person has Op OR Voice, then the person
 # completely bypasses the CommandCooldown function.
@@ -79,15 +87,6 @@ while 1:
             readUser()
             commandCooldown()
             return 0
-
-# Feelin' up the channel.
-    if data.find ( '376' ) != -1:
-        woot.send( 'JOIN '+messageable+'\r\n' )
-    if data.find ( '353' ) != -1:
-        nameslist = data
-#        woot.send( 'PRIVMSG '+messageable+' :Found new NAMES Listing: %s\r\n' %nameslist )
-    if data.find ( 'PING' ) != -1:
-        woot.send( 'PONG ' + data.split() [1] + '\r\n')
 
 # Beginning commands below. Parsed with feedparser.
 
