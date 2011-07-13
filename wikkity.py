@@ -74,6 +74,7 @@ while 1:
 #        woot.send ( 'PRIVMSG '+messageable+' :Last Message: %s\r\n'%mySubString )
         atsymbol = "@"
         voicesymbol = "+"
+        nameslist = data
         if nameslist.find(atsymbol+mySubString) != -1:
             readUser()
 #            woot.send ( 'PRIVMSG '+messageable+' :You are an op \r\n' )
