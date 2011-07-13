@@ -56,6 +56,8 @@ while 1:
             messageable = readUserName
         elif data.find( '!' ) != -1:
             readUserName = globalnullvalue
+        else:
+            break
 
 # Feelin' up the channel.
     if data.find ( '376' ) != -1:
