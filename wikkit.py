@@ -6,6 +6,7 @@
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
 # Requirements: Feedparser Python Library [http://www.feedparser.org/]
+# For a base version of this bot, check out Sprokkit [https://www.github.com/resba/Sprokkit]
 #
 # NOTE: All commented lines of CODE are debug messages for when something goes wrong.
 
@@ -18,9 +19,9 @@ import socket, sys, string, time, feedparser
 port = 6667
 nick = "Wikkit"
 host = 'irc.eu.esper.net'
-name =  "Nothing Short of a Miracle"
+name =  "WikkitBot"
 channel = '#bukkitwiki'
-ident = 'ilikeoctogons'
+ident = 'changeme'
 #Nickpasscheck: 1 - The nick requires a pass. 0 - The nick does NOT require a pass.
 nickpasscheck = 1
 #Nickpass: Password for Nick (If required.)
@@ -31,7 +32,7 @@ nickpass = 'changeme'
 woot = socket.socket()
 woot.connect ( (host, port) )
 woot.send ( 'NICK ' + nick + '\r\n' )
-woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :Wikkit\r\n' )
+woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :BukkitBot\r\n' )
 global nameslist
 global sentmessage
 global messageable
@@ -96,7 +97,7 @@ while 1:
 # Beginning commands below. Parsed with feedparser.
 
 # !wiki: Checks the recent changes RSS feed at wiki.bukkit.org
-    if data.find ( 'wiki' ) != -1:
+    if data.find ( 'bwiki' ) != -1:
         if (filterResponse() == 0):
             feedurl = feedparser.parse("http://wiki.bukkit.org/index.php?title=Special:RecentChanges&feed=atom")
             newest = feedurl['items'][0]
@@ -158,7 +159,7 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Help -- \r\n' )
-            woot.send ("PRIVMSG "+messageable+" :!wiki: Displays Last Wiki Edit %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+messageable+" :!bwiki: Displays Last Wiki Edit %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!build: Displays Recommended Craftbukkit Build %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!latest: Displays Latest Craftbukkit Build %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
@@ -171,11 +172,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.0-development \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.0 \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/06/11 at 03:17 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/06/11 at 05:42 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
