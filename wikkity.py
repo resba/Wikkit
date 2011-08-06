@@ -38,6 +38,16 @@ while 1:
     data = woot.recv ( 1204 )
     print(data)
     globalnullvalue = ""
+
+# Feelin' up the channel.
+    if data.find ( '376' ) != -1:
+        woot.send( 'JOIN '+channel+'\r\n' )
+    if data.find ( '353' ) != -1:
+        nameslist = data
+#        woot.send( 'PRIVMSG '+channel+' :Found new NAMES Listing: %s\r\n' %nameslist )
+    if data.find ( 'PING' ) != -1:
+        woot.send( 'PONG ' + data.split() [1] + '\r\n')
+
     def filterResponse():
         sentmessage = data
 #        woot.send ( 'PRIVMSG '+channel+' :Loaded filterResponse Function with '+sentmessage+' as the trigger. \r\n' )
@@ -77,14 +87,6 @@ while 1:
             global messageable 
             messageable = readUserName
             return 0
-# Feelin' up the channel.
-    if data.find ( '376' ) != -1:
-        woot.send( 'JOIN '+channel+'\r\n' )
-    if data.find ( '353' ) != -1:
-        nameslist = data
-#        woot.send( 'PRIVMSG '+channel+' :Found new NAMES Listing: %s\r\n' %nameslist )
-    if data.find ( 'PING' ) != -1:
-        woot.send( 'PONG ' + data.split() [1] + '\r\n')
 # Beginning commands below. Parsed with feedparser.
 
 # !wiki: Checks the recent changes RSS feed at wiki.bukkit.org
