@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by Resba
-# Version: 1.1-dev
+# Version: 1.1
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
