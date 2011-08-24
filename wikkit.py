@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by Resba
-# Version: 1.0
+# Version: 1.1-dev
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -107,10 +107,12 @@ while 1:
             author = e.author
             timestamp = e.updated
             summary = e.summary
+            summarya = summary.replace('<p>','')
+            summaryb = summarya.replace('</p>','')
             woot.send ( 'PRIVMSG '+messageable+' :-- BukkitWiki Most Recent Edit [ http://wiki.bukkit.org ] -- \r\n' )
             woot.send ("PRIVMSG "+messageable+" :Most Recent Change: %s\r\n" % title)
             woot.send ("PRIVMSG "+messageable+" :Author: %s\r\n" % author)
-            woot.send ("PRIVMSG "+messageable+" :Summary: %s\r\n" % summary)
+            woot.send ("PRIVMSG "+messageable+" :Summary: %s\r\n" % summaryb)
             woot.send ("PRIVMSG "+messageable+" :URL: %s\r\n" % threadurl)
             woot.send ("PRIVMSG "+messageable+" :Timestamp: %s\r\n" % timestamp)
 
@@ -172,11 +174,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.0 \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.1-dev \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/06/11 at 05:42 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/24/11 at 00:12 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
