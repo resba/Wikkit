@@ -54,7 +54,7 @@ while 1:
         woot.send( 'PONG ' + data.split() [1] + '\r\n')
     if (nickpasscheck == 1):
         if data.find ( 'NickServ!' ) != -1:
-            woot.send ( 'PRIVMSG NickServ IDENTIFY %s\r\n'%nickpass )
+            woot.send ( 'PRIVMSG NickServ IDENTIFY '+nick+' %s\r\n'%nickpass )
     def filterResponse():
         sentmessage = data
 #        woot.send ( 'PRIVMSG '+channel+' :Loaded filterResponse Function with '+sentmessage+' as the trigger. \r\n' )
@@ -174,11 +174,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.1-dev \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.1 \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/24/11 at 00:12 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/24/11 at 16:02 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
