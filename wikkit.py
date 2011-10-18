@@ -152,7 +152,7 @@ while 1:
             #e = cbrss.entries[0]
             t = n.title
             #d = n.pubDate
-            l = n.l
+            l = n.link
             woot.send ( 'PRIVMSG '+messageable+' :-- Craftbukkit Twitter [ http://www.twitter.com/Craftbukkit ] -- \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % t)
             #woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % d)
