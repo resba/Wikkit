@@ -148,14 +148,14 @@ while 1:
     if data.find ( 'cbtweet' ) != -1:
         if (filterResponse() == 0):
             cbrss = feedparser.parse("http://www.twitter.com/statuses/user_timeline/craftbukkit.rss")
-            n = cbrss['item'][0]
+            n = cbrss['items'][0]
             #e = cbrss.entries[0]
             t = n.title
-            d = n.pubDate
+            #d = n.pubDate
             l = n.l
             woot.send ( 'PRIVMSG '+messageable+' :-- Craftbukkit Twitter [ http://www.twitter.com/Craftbukkit ] -- \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % t)
-            woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % d)
+            #woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % d)
             woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % l)
 
 # !latest: Checks the most latest build of Craftbukkit  from ci.bukkit.org
