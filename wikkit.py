@@ -145,11 +145,11 @@ while 1:
             woot.send ("PRIVMSG "+messageable+" : %s\r\n" % newestsophos)
             woot.send ("PRIVMSG "+messageable+" :Download URL: %s\r\n" % sophosurl)
 
-    if data.find ( 'cbrss' ) != -1:
+    if data.find ( 'cbtweet' ) != -1:
         if (filterResponse() == 0):
             cbrss = feedparser.parse("http://www.twitter.com/statuses/user_timeline/craftbukkit.rss")
-            newcbrss = cbrss['items'][0].title
-            e = cbrss.entries[0]
+            n = cbrss['items'][0].title
+            e = cbrss.items[0]
             t = e.title
             d = e.pubDate
             l = e.l
