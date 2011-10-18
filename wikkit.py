@@ -54,7 +54,7 @@ while 1:
         woot.send( 'PONG ' + data.split() [1] + '\r\n')
     if (nickpasscheck == 1):
         if data.find ( 'NickServ!' ) != -1:
-            woot.send ( 'PRIVMSG NickServ IDENTIFY %s\r\n'%nickpass )
+            woot.send ( 'PRIVMSG NickServ IDENTIFY '+nickpass+'\r\n' )
     def filterResponse():
         sentmessage = data
 #        woot.send ( 'PRIVMSG '+channel+' :Loaded filterResponse Function with '+sentmessage+' as the trigger. \r\n' )
