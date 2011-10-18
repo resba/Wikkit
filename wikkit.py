@@ -258,6 +258,7 @@ while 1:
 			woot.send ( 'PRIVMSG '+messageable+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
     
     def debugGrace():
+        global messageable
         if (messageable == ''):
             messageable = channel
         if (debug == 1):
