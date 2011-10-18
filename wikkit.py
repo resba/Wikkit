@@ -192,12 +192,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.2-dev \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.3-dev \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/16/11 at 14:38 ET \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Generously Hosted by: chrisward \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 16:13 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
@@ -258,28 +257,46 @@ while 1:
         if (filterResponse() == 0):
 			woot.send ( 'PRIVMSG '+messageable+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
     
-
+    def debugGrace():
+        if (messageable == ''):
+            messageable = channel
+        if (debug == 1):
+            woot.send('PRIVMSG '+messageable+' :debugGrace() has been loaded \r\n' )
+        sentmessage = data
+        mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
+        if (mySubString == botadmin or mySubString == botadmin2):
+            if(debug == 1):
+                woot.send('PRIVMSG '+messageable+' :You are one of the predefined users who can use this command. debugGrace() returns 1 \r\n' )
+            return 1
+        else:
+            if(debug == 1):
+                woot.send('PRIVMSG '+messageable+' :You are one of the predefined users who can use this command. debugGrace() returns 0 \r\n' )
+            return 0
 # Command to gracefully close Wikkit and disconnect it from the
 # Server.
     if data.find ( '!debug.timetogo') != -1:
-        sentmessage = data
-        mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
         thenull = ""
-        if (mySubString == botadmin or mySubString == botadmin2):
+        if (debugGrace() == 1):
             woot.send ("QUIT :I have been Deadeded. %s\r\n" % thenull )
             woot.close()
             sys.exit()
 #Toggles Debug
     if data.find ( '!debug.debug') != -1:
-        if (messageable == ''):
-            messageable = channel
-        sentmessage = data
-        mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
-        if (mySubString == botadmin or mySubString == botadmin2):
+        if (debugGrace()==1):
             if (debug == 0):
                 debug = 1
                 woot.send ('PRIVMSG '+messageable+' :Debug is ON \r\n')
             elif (debug == 1):
                 debug = 0
                 woot.send ('PRIVMSG '+messageable+' :Debug is OFF \r\n')
+    if data.find ( '!debug.reloader' ) != -1:
+        if (debugGrace()==1):
+            woot.send ( 'NAMES '+messageable+' \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Boom! \r\n')
+    if data.find ( '!debug.lastUsed') != -1:
+        if (debugGrace()==1):
+            woot.send ('PRIVMSG '+messageable+' :%s\r\n' % lastUsed )
+    if data.find ( '!debug.time.time' ) != -1:
+        if (debugGrace()==1):
+            woot.send ('PRIVMSG '+messageable+' :%s\r\n' % time.time() )
 
