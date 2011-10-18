@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by resba
-# Version: 1.3
+# Version: 1.4
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -151,12 +151,12 @@ while 1:
             n = cbrss['items'][0]
             #e = cbrss.entries[0]
             t = n.title
-            d = n.published
+            #d = n.published
             l = n.link
             woot.send ( 'PRIVMSG '+messageable+' :-- Craftbukkit Twitter [ http://www.twitter.com/Craftbukkit ] -- \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % t)
             woot.send ( 'PRIVMSG '+messageable+' : %s\r\n' % l)
-            woot.send ( 'PRIVMSG '+messageable+' : Time Published: %s\r\n' % d)            
+            #woot.send ( 'PRIVMSG '+messageable+' : Time Published: %s\r\n' % d)            
 
 # !latest: Checks the most latest build of Craftbukkit  from ci.bukkit.org
     if data.find ( 'latest' ) != -1:
@@ -205,11 +205,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.3 \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.4 \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 16:19 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 17:09 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
