@@ -148,7 +148,7 @@ while 1:
     if data.find ( 'cbtweet' ) != -1:
         if (filterResponse() == 0):
             cbrss = feedparser.parse("http://www.twitter.com/statuses/user_timeline/craftbukkit.rss")
-            n = cbrss['items'][0]
+            n = cbrss['item'][0]
             #e = cbrss.entries[0]
             t = n.title
             d = n.pubDate
