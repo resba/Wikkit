@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
-# Script by Resba
-# Version: 1.2-dev
+# Script by resba
+# Version: 1.3
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -192,11 +192,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.3-dev \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.3 \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 16:13 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 16:19 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
@@ -290,6 +290,7 @@ while 1:
             elif (debug == 1):
                 debug = 0
                 woot.send ('PRIVMSG '+messageable+' :Debug is OFF \r\n')
+#Fun debug commands
     if data.find ( '!debug.reloader' ) != -1:
         if (debugGrace()==1):
             woot.send ( 'NAMES '+messageable+' \r\n' )
