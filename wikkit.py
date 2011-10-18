@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by Resba
-# Version: 1.1
+# Version: 1.2-dev
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -21,21 +21,29 @@ nick = "Wikkit"
 host = 'irc.eu.esper.net'
 name =  "WikkitBot"
 channel = '#bukkitwiki'
-ident = 'changeme'
+ident = 'Loveitwhenweletloose'
 #Nickpasscheck: 1 - The nick requires a pass. 0 - The nick does NOT require a pass.
 nickpasscheck = 1
 #Nickpass: Password for Nick (If required.)
 nickpass = 'changeme'
+
+#botadmin: your nick is inputted for access to debug commands such as graceful shutdown and debug messages
+botadmin = 'resba'
+botadmin2 = 'chrisward'
+
+#DebugSwitch: For use when debug is needed.
+debug = 0
 
 # Now we just initialize socket.socket and connect to the server, giving out
 # the bot's info to the server.
 woot = socket.socket()
 woot.connect ( (host, port) )
 woot.send ( 'NICK ' + nick + '\r\n' )
-woot.send ( 'USER ' + ident + ' ' +  ident + ' ' + ident + ' :BukkitBot\r\n' )
+woot.send ( 'USER ' + ident + ' 0 * :BukkitBot\r\n' )
 global nameslist
 global sentmessage
 global messageable
+messageable = ''
 lastUsed = time.time()
 
 # Beginning the Loop here.
@@ -49,43 +57,53 @@ while 1:
         woot.send( 'JOIN '+channel+'\r\n' )
     if data.find ( '353' ) != -1:
         nameslist = data
-#        woot.send( 'PRIVMSG '+channel+' :Found new NAMES Listing: %s\r\n' %nameslist )
+        if (debug == 1):
+            woot.send( 'PRIVMSG '+channel+' :Found new NAMES Listing: %s\r\n' %nameslist )
     if data.find ( 'PING' ) != -1:
-        woot.send( 'PONG ' + data.split() [1] + '\r\n')
+        woot.send( 'PONG ' + data.split() [1] + '\r\n');
     if (nickpasscheck == 1):
         if data.find ( 'NickServ!' ) != -1:
-            woot.send ( 'PRIVMSG NickServ IDENTIFY '+nickpass+'\r\n' )
+            woot.send ( 'PRIVMSG NickServ :IDENTIFY '+nick+' '+nickpass+'\r\n' )
+            nickpasscheck = 0
     def filterResponse():
         sentmessage = data
-#        woot.send ( 'PRIVMSG '+channel+' :Loaded filterResponse Function with '+sentmessage+' as the trigger. \r\n' )
+        if (debug == 1):
+            woot.send ( 'PRIVMSG '+channel+' :Loaded filterResponse Function with '+sentmessage+' as the trigger. \r\n' )
         #The command has been called. First check to see what type of command was called.
         if data.find ( ':!' ) != -1:
             global messageable 
             messageable = channel
-#            woot.send ( 'PRIVMSG '+channel+' :The command was an announement ! \r\n' )
+            if (debug == 1):
+                woot.send ( 'PRIVMSG '+channel+' :The command was an announement ! \r\n' )
             #The command was an announcement. now we check for privilages.
             mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
-#            woot.send ( 'PRIVMSG '+channel+' :Last Message: %s\r\n'%mySubString )
+            if (debug == 1):
+                woot.send ( 'PRIVMSG '+channel+' :Last Message: %s\r\n'%mySubString )
             atsymbol = "@"
             voicesymbol = "+"
             #If the nameslist variable contains the user with some sort of privilage. The check ends and returns to the command.
             if nameslist.find(atsymbol+mySubString) != -1:           
-#                woot.send ( 'PRIVMSG '+channel+' :You are an op \r\n' )
+                if (debug == 1):
+                    woot.send ( 'PRIVMSG '+channel+' :You are an op \r\n' )
                 #because this is a global filter, the messageable is named the channel because its an announcement.
                 return 0
             elif nameslist.find(voicesymbol+mySubString) != -1:
-#            	woot.send ( 'PRIVMSG '+channel+' :You are voiced \r\n' )
+                if (debug == 1):
+                    woot.send ( 'PRIVMSG '+channel+' :You are voiced \r\n' )
                 return 0
             else:
                 #If the user is NOT privilidged, then they need to jump through a few more hoops.
-#                woot.send ( 'PRIVMSG '+channel+' :You are not a privilidged user \r\n' )
+                if(debug == 1):
+                    woot.send ( 'PRIVMSG '+channel+' :You are not a privilidged user \r\n' )
                 if(time.time() - lastUsed) > 10:
                     global lastUsed
                     lastUsed = time.time()
-#                    woot.send ('PRIVMSG '+channel+' :lastUsed Check Passed, now returning to command \r\n' )
+                    if (debug == 1):
+                        woot.send ('PRIVMSG '+channel+' :lastUsed Check Passed, now returning to command \r\n' )
                     return 0
                 else:
-#                    woot.send ( 'PRIVMSG '+channel+' :Command Cooldown Active. Ignoring Command \r\n' )
+                    if (debug == 1):
+                        woot.send ( 'PRIVMSG '+channel+' :Command Cooldown Active. Ignoring Command \r\n' )
                     return 1
         elif data.find ( ':^' ) != -1:
             #The Command was a Privmsg, so we send the privmsg.
@@ -174,11 +192,12 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.1 \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.2-dev \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 8/24/11 at 16:02 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/16/11 at 14:38 ET \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Generously Hosted by: chrisward \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
@@ -186,7 +205,8 @@ while 1:
             woot.send ( 'PRIVMSG '+messageable+' :IRC Rules can be found on: http://wiki.bukkit.org/IRC \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :To display a rule, type !rule<number> \r\n' )
     if data.find ( 'MODE' ) != -1:
-#        woot.send ( 'PRIVMSG '+channel+' :MODE Command Was Sent. \r\n' )
+        if (debug == 1):
+            woot.send ( 'PRIVMSG '+channel+' :MODE Command Was Sent. \r\n' )
         woot.send ( 'NAMES ' + channel + ' \r\n' )
 # !rule1 ~ !rule16: Displays rules for Bukkit Community IRC Channels.
     if data.find ( 'rule1' ) != -1:
@@ -238,13 +258,28 @@ while 1:
         if (filterResponse() == 0):
 			woot.send ( 'PRIVMSG '+messageable+' :IRC Rule #16 - This is an English only channel - http://wiki.bukkit.org/IRC#rule16 \r\n' )
     
-"""
-# Command to gracefully close Wikkity and disconnect it from the
-# Server. Only OPs can use this command due to opCheck
+
+# Command to gracefully close Wikkit and disconnect it from the
+# Server.
     if data.find ( '!debug.timetogo') != -1:
+        sentmessage = data
+        mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
         thenull = ""
-        if (filterResponse() == 0):
-            woot.send ("QUIT death to us all %s\r\n" % thenull )
+        if (mySubString == botadmin or mySubString == botadmin2):
+            woot.send ("QUIT :I have been Deadeded. %s\r\n" % thenull )
             woot.close()
             sys.exit()
-"""
+#Toggles Debug
+    if data.find ( '!debug.debug') != -1:
+        if (messageable == ''):
+            messageable = channel
+        sentmessage = data
+        mySubString = sentmessage[sentmessage.find(":")+1:sentmessage.find("!")]
+        if (mySubString == botadmin or mySubString == botadmin2):
+            if (debug == 0):
+                debug = 1
+                woot.send ('PRIVMSG '+messageable+' :Debug is ON \r\n')
+            elif (debug == 1):
+                debug = 0
+                woot.send ('PRIVMSG '+messageable+' :Debug is OFF \r\n')
+
