@@ -17,10 +17,10 @@ import socket, sys, string, time, feedparser
 # the Bot will take, host (IRC server), RealName, Channel that you want the bot
 # to function in, and IDENT value.
 port = 6667
-nick = "WikkitDev"
+nick = "Wikkit"
 host = 'optical.esper.net'
 name =  "WikkitBot"
-channel = '#bukkitwikibots'
+channel = '#bukkitwiki'
 ident = 'Loveitwhenweletloose'
 #Nickpasscheck: 1 - The nick requires a pass. 0 - The nick does NOT require a pass.
 nickpasscheck = 1
@@ -198,6 +198,7 @@ while 1:
             woot.send ("PRIVMSG "+messageable+" :!news: Displays Current News Displayed on the HomePage of Bukkit.org %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!notch: Displays Latest Blog Post From Notch's Tumblr Account %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!rules: Displays Link to Rules %s\r\n" % thenull )
+            woot.send ("PRIVMSG "+messageable+" :!cbtweet: Displays Link to Rules %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :!rule<number>: Displays IRC Rule for that Number [1-16] %s\r\n" % thenull )
             woot.send ("PRIVMSG "+messageable+" :You can replace ! with ^ to have the command send in a Private Message! %s\r\n" % thenull )
 # !version: Displays Wikkity Version
@@ -205,11 +206,11 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :WikkitBot V1.4 \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Wikkit v1.4 b17 \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :http://dev.resbah.com:8080/job/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Last Updated: 10/18/11 at 17:09 ET \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rules' ) != -1:
         if (filterResponse() == 0):
