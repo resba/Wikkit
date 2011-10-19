@@ -17,8 +17,8 @@ import socket, sys, string, time, feedparser
 # the Bot will take, host (IRC server), RealName, Channel that you want the bot
 # to function in, and IDENT value.
 port = 6667
-nick = "Wikkit"
-host = 'irc.eu.esper.net'
+nick = "WikkitDev"
+host = 'optical.esper.net'
 name =  "WikkitBot"
 channel = '#bukkitwikibots'
 ident = 'Loveitwhenweletloose'
