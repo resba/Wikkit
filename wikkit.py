@@ -20,7 +20,7 @@ port = 6667
 nick = "Wikkit"
 host = 'irc.eu.esper.net'
 name =  "WikkitBot"
-channel = '#bukkitwiki'
+channel = '#bukkitwikibots'
 ident = 'Loveitwhenweletloose'
 #Nickpasscheck: 1 - The nick requires a pass. 0 - The nick does NOT require a pass.
 nickpasscheck = 1
