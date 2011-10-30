@@ -315,7 +315,7 @@ while 1:
     if data.find ( '!debug.join') != -1:
         if (debugGrace()==1):
        	    channelist = sentmessage[sentmessage.find("#")+1:sentmessage.find(".")
-            woot.send ('JOIN %s\r\n' % channelist )
+            woot.send ('JOIN '+channelist+' \r\n' )
     if data.find ( '!debug.time.time' ) != -1:
         if (debugGrace()==1):
             woot.send ('PRIVMSG '+messageable+' :%s\r\n' % time.time() )
