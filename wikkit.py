@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Wikkit IRC Bot. Built for the #bukkitwiki channel for the Bukkit Community.
 # Script by resba
-# Version: 1.4
+# Version: 1.6-dev
 # http://wiki.bukkit.org/IRC/Bots/Wikkit
 # License: Do not remove this original copyright for fair use. 
 # Give credit where credit is due!
@@ -206,10 +206,9 @@ while 1:
         if (filterResponse() == 0):
             thenull = ""
             woot.send ( 'PRIVMSG '+messageable+' :-- Wikkit Version -- \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :Wikkit v1.4 b17 \r\n' )
+            woot.send ( 'PRIVMSG '+messageable+' :Wikkit v1.6-dev \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Built By resba \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :http://wiki.bukkit.org/IRC/Bots/Wikkit \r\n' )
-            woot.send ( 'PRIVMSG '+messageable+' :http://dev.resbah.com:8080/job/Wikkit \r\n' )
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rule' ) != -1:
@@ -298,8 +297,8 @@ while 1:
             woot.send ('PRIVMSG '+messageable+' :%s\r\n' % lastUsed )
     if data.find ( '!debug.join') != -1:
         if (debugGrace()==1):
-       	    channelist = sentmessage[sentmessage.find("#")+1:sentmessage.find(".")
-            woot.send ('JOIN '+channelist+' \r\n' )
+       	    chansel = sentmessage[sentmessage.find('.join ')+6:sentmessage.find(':')+len(sentmessage)]
+            woot.send ('JOIN '+chansel+' \r\n' )
     if data.find ( '!debug.time.time' ) != -1:
         if (debugGrace()==1):
             woot.send ('PRIVMSG '+messageable+' :%s\r\n' % time.time() )
