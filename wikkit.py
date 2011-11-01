@@ -213,6 +213,7 @@ while 1:
             woot.send ( 'PRIVMSG '+messageable+' :Receives feeds from sources and displays them after a certain command is run \r\n' )
 # !rules: Displays rules linkout.
     if data.find ( 'rule' ) != -1:
+        sentmessage = data
         if (filterResponse() == 0):
             if (sentmessage[sentmessage.find(':')+len(sentmessage)-1] == 'e'):
                 woot.send ( 'PRIVMSG '+messageable+' :IRC Rules can be found on: http://wiki.bukkit.org/IRC \r\n' )
